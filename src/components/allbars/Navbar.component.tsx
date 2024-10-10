@@ -1,31 +1,68 @@
-// components/Navbar.js
-import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faUser,
+  faGlobe,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Navbar() {
+const Navbar = () => {
   return (
-    <div className="border-b shadow-md">
-      {/* Top bar */}
-      <div className="flex justify-between items-center px-6 py-4">
-        <div className="flex space-x-2">
-          <button className="btn btn-outline btn-sm">Anywhere</button>
-          <button className="btn btn-outline btn-sm">Any week</button>
-          <button className="btn btn-outline btn-sm">Add guests</button>
+    <div className="shadow-md">
+      {/* Top Navbar */}
+      <div className="flex justify-between items-center px-8 py-4">
+        {/* Left - Logo */}
+        <div className="navbar-start">
+          <Link href="/">
+            <Image
+              src="/airbnb.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="h-10 w-auto"
+            />
+          </Link>
         </div>
-        <div className="space-x-2 flex items-center">
-          <button className="btn btn-sm btn-ghost">Become a host</button>
+
+        {/* Center - Nav Links */}
+        <div className="navbar-center hidden md:flex space-x-6">
+          <Link
+            href="/stays"
+            className="font-medium text-gray-600 hover:text-black"
+          >
+            Stays
+          </Link>
+          <Link
+            href="/experiences"
+            className="font-medium text-gray-600 hover:text-black"
+          >
+            Experiences
+          </Link>
+        </div>
+
+        {/* Right - Profile and Buttons */}
+        <div className="space-x-4 flex items-center">
+          <button className="font-medium text-gray-600 hover:text-black">
+            Airbnb your home
+          </button>
+          <FontAwesomeIcon
+            icon={faGlobe}
+            className="h-5 cursor-pointer text-gray-600"
+          />
           <div className="dropdown dropdown-end">
-            <label
+            <div
               tabIndex={0}
-              className="btn btn-ghost btn-sm btn-circle avatar"
+              role="button"
+              className="btn rounded-full space-x-2"
             >
-              <div className="w-8 rounded-full">
-                <img src="/images/profile-placeholder.png" alt="Profile" />
-              </div>
-            </label>
+              <FontAwesomeIcon icon={faBars} className="h-5 text-gray-600" />
+              <FontAwesomeIcon icon={faUser} className="h-5 text-gray-600" />
+            </div>
             <ul
               tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+              className="dropdown-content mt-3 p-2 shadow menu menu-compact bg-base-100 rounded-box w-52"
             >
               <li>
                 <Link href="/profile">Profile</Link>
@@ -41,61 +78,35 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Navbar */}
-      <div className="navbar bg-base-100 px-6">
-        <div className="navbar-start">
-          <Link href="/" className="text-2xl font-bold">
-            <Image src="/logo.png" alt="Logo" width={80} height={80} className="h-8" />
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link href="/stays">Stays</Link>
-            </li>
-            <li>
-              <Link href="/experiences">Experiences</Link>
-            </li>
-            <li>
-              <Link href="/places">Places</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="navbar-end lg:hidden">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link href="/stays">Stays</Link>
-              </li>
-              <li>
-                <Link href="/experiences">Experiences</Link>
-              </li>
-              <li>
-                <Link href="/places">Places</Link>
-              </li>
-            </ul>
+      {/* Search Box */}
+      <div className="flex justify-center items-center py-4 bg-white shadow-lg rounded-full mx-auto max-w-3xl px-6">
+        <div className="flex justify-between w-full items-center space-x-4">
+          <div className="flex flex-col items-start">
+            <span className="text-xs font-semibold">Where</span>
+            <span className="text-sm text-gray-500">Search destinations</span>
           </div>
+          <div className="border-l border-gray-300 h-10"></div>
+          <div className="flex flex-col items-start">
+            <span className="text-xs font-semibold">Check in</span>
+            <span className="text-sm text-gray-500">Add dates</span>
+          </div>
+          <div className="border-l border-gray-300 h-10"></div>
+          <div className="flex flex-col items-start">
+            <span className="text-xs font-semibold">Check out</span>
+            <span className="text-sm text-gray-500">Add dates</span>
+          </div>
+          <div className="border-l border-gray-300 h-10"></div>
+          <div className="flex flex-col items-start">
+            <span className="text-xs font-semibold">Who</span>
+            <span className="text-sm text-gray-500">Add guests</span>
+          </div>
+          <button className="btn btn-primary btn-circle">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;
